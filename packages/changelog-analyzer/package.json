@@ -1,0 +1,44 @@
+{
+  "name": "changelog-analyzer",
+  "version": "0.0.0",
+  "description": "",
+  "author": "ajiho",
+  "funding": "https://www.lujiahao.com/sponsor",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsdown"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/index.cjs",
+        "types": "./dist/index.d.cts"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "packageManager": "pnpm@10.17.1",
+  "keywords": [],
+  "dependencies": {
+    "markdown-it": "^14.1.0",
+    "universalify": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/universalify": "^1.0.3",
+    "is-what": "^5.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

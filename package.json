@@ -1,0 +1,58 @@
+{
+  "private": true,
+  "name": "@changelog-analyzer/monorepo",
+  "version": "0.0.0",
+  "author": "ajiho",
+  "funding": "https://www.lujiahao.com/sponsor",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "clean": "rimraf --glob packages/*/dist",
+    "prettier": "prettier -c configs/prettier.config.mjs . --write",
+    "eslint": "eslint -c configs/eslint.config.mjs",
+    "commit": "git-cz",
+    "prepare": "husky",
+    "build:core": "pnpm --filter changelog-analyzer build",
+    "build:cli": "tsc -p packages/cli/tsconfig.json",
+    "build": "run-s clean build:*",
+    "test": "vitest --config configs/vitest.config.mjs --coverage --ui"
+  },
+  "config": {
+    "commitizen": {
+      "czConfig": "./configs/cz.config.mjs",
+      "path": "node_modules/cz-git"
+    }
+  },
+  "packageManager": "pnpm@10.17.1",
+  "engines": {
+    "node": ">=22.14.0",
+    "npm": ">=10.9.2",
+    "pnpm": ">=10.15.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@eslint/js": "^9.36.0",
+    "@types/node": "^24.6.1",
+    "@typescript-eslint/eslint-plugin": "^8.46.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
+    "commitizen": "^4.3.1",
+    "cz-git": "^1.12.0",
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-unicorn": "^61.0.2",
+    "execa": "^9.6.0",
+    "globals": "^16.4.0",
+    "husky": "^9.1.7",
+    "npm-run-all2": "^8.0.4",
+    "prettier": "^3.6.2",
+    "prettier-plugin-sort-pkgjson": "^1.0.0",
+    "rimraf": "^6.0.1",
+    "tsdown": "^0.15.6",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.45.0",
+    "vitest": "^3.2.4"
+  }
+}
