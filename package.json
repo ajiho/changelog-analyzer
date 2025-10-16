@@ -8,14 +8,20 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf --glob packages/*/dist",
-    "prettier": "prettier -c configs/prettier.config.mjs . --write",
-    "eslint": "eslint -c configs/eslint.config.mjs",
+    "prettier": "prettier --config configs/prettier.config.mjs . --check --cache --cache-location node_modules/.cache/.prettiercache",
+    "prettier:fix": "prettier --config configs/prettier.config.mjs . --write",
+    "eslint": "eslint -c configs/eslint.config.mjs --cache --cache-location node_modules/.cache/.eslintcache",
+    "eslint:fix": "eslint -c configs/eslint.config.mjs --fix",
+    "lint": "run-s prettier eslint",
+    "fix": "run-s *:fix",
     "commit": "git-cz",
+    "commitlint": "commitlint --config configs/commitlint.config.mjs -e -V",
     "prepare": "husky",
     "build:core": "pnpm --filter changelog-analyzer build",
     "build:cli": "tsc -p packages/cli/tsconfig.json",
     "build": "run-s clean build:*",
-    "test": "vitest --config configs/vitest.config.mjs --coverage --ui"
+    "test": "vitest --config configs/vitest.config.mjs --coverage --ui",
+    "coverage": "vitest --config configs/vitest.config.mjs run --coverage"
   },
   "config": {
     "commitizen": {

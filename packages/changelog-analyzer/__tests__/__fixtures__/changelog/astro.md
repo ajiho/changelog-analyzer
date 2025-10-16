@@ -62,7 +62,7 @@
         { hostname: "cdn.example.com", port: "443" },
       ],
     },
-  });
+  })
   ```
 
   The patterns support wildcards (`*` and `**`) for flexible hostname matching and can optionally specify protocol and port.
@@ -161,9 +161,9 @@
   The `getFontData()` helper function from `astro:assets` provides access to font family data for use outside of Astro. This can then be used in an [API Route](/en/guides/endpoints/#server-endpoints-api-routes) or to generate your own meta tags.
 
   ```ts
-  import { getFontData } from "astro:assets";
+  import { getFontData } from "astro:assets"
 
-  const data = getFontData("--font-roboto");
+  const data = getFontData("--font-roboto")
   ```
 
   For example, `getFontData()` can get the font buffer from the URL when using [satori](https://github.com/vercel/satori) to generate OpenGraph images:
@@ -171,12 +171,12 @@
   ```tsx
   // src/pages/og.png.ts
 
-  import type { APIRoute } from "astro";
-  import { getFontData } from "astro:assets";
-  import satori from "satori";
+  import type { APIRoute } from "astro"
+  import { getFontData } from "astro:assets"
+  import satori from "satori"
 
   export const GET: APIRoute = (context) => {
-    const data = getFontData("--font-roboto");
+    const data = getFontData("--font-roboto")
 
     const svg = await satori(
       <div style={{ color: "black" }}>hello, world</div>,
@@ -194,10 +194,10 @@
           },
         ],
       },
-    );
+    )
 
     // ...
-  };
+  }
   ```
 
   See the [experimental Fonts API documentation](https://docs.astro.build/en/reference/experimental-flags/fonts/#accessing-font-data-programmatically) for more information.
@@ -412,13 +412,13 @@
 
   ```js
   // astro.config.mjs
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
 
   export default defineConfig({
     experimental: {
       chromeDevtoolsWorkspace: true,
     },
-  });
+  })
   ```
 
   See the [experimental Chrome DevTools workspace feature documentation](https://docs.astro.build/en/reference/experimental-flags/chrome-devtools-workspace/) for more information.
@@ -510,7 +510,7 @@
 - [#14071](https://github.com/withastro/astro/pull/14071) [`d2cb35d`](https://github.com/withastro/astro/commit/d2cb35d2b7ff999fea8aa39c79f9f048c3500aeb) Thanks [@Grisoly](https://github.com/Grisoly)! - Exposes the `Code` component `lang` prop type:
 
   ```ts
-  import type { CodeLanguage } from "astro";
+  import type { CodeLanguage } from "astro"
   ```
 
 - [#14111](https://github.com/withastro/astro/pull/14111) [`5452ee6`](https://github.com/withastro/astro/commit/5452ee67f95f51dcfdca8c1988b29f89553efe1c) Thanks [@ascorbic](https://github.com/ascorbic)! - Fixes a bug that prevented "key" from being used as a prop for Astro components in MDX
@@ -795,7 +795,7 @@
     experimental: {
       responsiveImages: true,
     },
-  });
+  })
   ```
 
   **After:**
@@ -809,7 +809,7 @@
       breakpoints: [640, 750, 828, 1080, 1280],
       responsiveStyles: true, // This is now *false* by default
     },
-  });
+  })
   ```
 
   ##### Component usage remains the same
@@ -857,8 +857,8 @@
   Then create a new `src/live.config.ts` file (alongside your `src/content.config.ts` if you have one) to define your live collections with a [live loader](https://docs.astro.build/en/reference/experimental-flags/live-content-collections/#creating-a-live-loader) and optionally a [schema](https://docs.astro.build/en/reference/experimental-flags/live-content-collections/#using-zod-schemas) using the new `defineLiveCollection()` function from the `astro:content` module.
 
   ```ts title="src/live.config.ts"
-  import { defineLiveCollection } from "astro:content";
-  import { storeLoader } from "@mystore/astro-loader";
+  import { defineLiveCollection } from "astro:content"
+  import { storeLoader } from "@mystore/astro-loader"
 
   const products = defineLiveCollection({
     type: "live",
@@ -866,9 +866,9 @@
       apiKey: process.env.STORE_API_KEY,
       endpoint: "https://api.mystore.com/v1",
     }),
-  });
+  })
 
-  export const collections = { products };
+  export const collections = { products }
   ```
 
   You can then use the dedicated `getLiveCollection()` and `getLiveEntry()` functions to access your live data:
@@ -962,10 +962,10 @@
             adapterFeatures: {
               experimentalStaticHeaders: true,
             },
-          });
+          })
         },
       },
-    };
+    }
   }
   ```
 
@@ -1059,13 +1059,13 @@
 
   ```js
   // astro.config.mjs
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
 
   export default defineConfig({
     experimental: {
       csp: true,
     },
-  });
+  })
   ```
 
   For more information on enabling and using this feature in your project, see the [Experimental CSP docs](https://docs.astro.build/en/reference/experimental-flags/csp/).
@@ -1079,16 +1079,16 @@
   This allows you to render Markdown content from various sources, such as a CMS or other data sources, directly in your loaders without needing to preprocess the Markdown content separately.
 
   ```ts
-  import type { Loader } from "astro/loaders";
-  import { loadFromCMS } from "./cms";
+  import type { Loader } from "astro/loaders"
+  import { loadFromCMS } from "./cms"
 
   export function myLoader(settings): Loader {
     return {
       name: "my-loader",
       async load({ renderMarkdown, store }) {
-        const entries = await loadFromCMS();
+        const entries = await loadFromCMS()
 
-        store.clear();
+        store.clear()
 
         for (const entry of entries) {
           // Assume each entry has a 'content' field with markdown content
@@ -1096,10 +1096,10 @@
             id: entry.id,
             data: entry,
             rendered: await renderMarkdown(entry.content),
-          });
+          })
         }
       },
-    };
+    }
   }
   ```
 
@@ -1134,7 +1134,7 @@
         suppress: "default",
       },
     },
-  });
+  })
   ```
 
   For more information, see the [Adapter API reference docs](https://docs.astro.build/en/reference/adapter-reference/#astro-features).
@@ -1169,7 +1169,7 @@
     experimental: {
       responsiveImages: true,
     },
-  };
+  }
   ```
 
 - [#13858](https://github.com/withastro/astro/pull/13858) [`cb1a168`](https://github.com/withastro/astro/commit/cb1a1681c844737477670ac42bb051bf93fae0a3) Thanks [@florian-lefebvre](https://github.com/florian-lefebvre)! - Fixes the warning shown when client directives are used on Astro components
@@ -1243,7 +1243,7 @@
   ```js
   {
     // No weight specified: infer
-    style: "normal"; // Do not infer
+    style: "normal" // Do not infer
   }
   ```
 
@@ -1441,15 +1441,15 @@
   If you are using an adapter that doesn't have a default driver, or if you want to choose a different driver, you can configure it using the `session` configuration option:
 
   ```js
-  import { defineConfig } from "astro/config";
-  import vercel from "@astrojs/vercel";
+  import { defineConfig } from "astro/config"
+  import vercel from "@astrojs/vercel"
 
   export default defineConfig({
     adapter: vercel(),
     session: {
       driver: "upstash",
     },
-  });
+  })
   ```
 
   #### Using sessions
@@ -1470,8 +1470,8 @@
 
   ```js
   export async function GET(context) {
-    const cart = await context.session.get("cart");
-    return Response.json({ cart });
+    const cart = await context.session.get("cart")
+    return Response.json({ cart })
   }
   ```
 
@@ -1553,13 +1553,13 @@
 
   ```js
   // src/utils.js
-  import { trailingSlash } from "astro:config/client";
+  import { trailingSlash } from "astro:config/client"
 
   function addForwardSlash(path) {
     if (trailingSlash === "always") {
-      return path.endsWith("/") ? path : path + "/";
+      return path.endsWith("/") ? path : path + "/"
     } else {
-      return path;
+      return path
     }
   }
   ```
@@ -1739,15 +1739,15 @@
 
   ```ts
   // src/pages/api/cart.ts
-  import type { APIRoute } from "astro";
+  import type { APIRoute } from "astro"
 
   export const GET: APIRoute = async ({ session, request }) => {
     // Load the session from a header instead of cookies
-    const sessionId = request.headers.get("x-session-id");
-    await session.load(sessionId);
-    const cart = await session.get("cart");
-    return Response.json({ cart });
-  };
+    const sessionId = request.headers.get("x-session-id")
+    await session.load(sessionId)
+    const cart = await session.get("cart")
+    return Response.json({ cart })
+  }
   ```
 
   If a session with that ID doesn't exist, a new one will be created. This allows you to generate a session ID in the client if needed.
@@ -1846,14 +1846,14 @@
   For example, if you have a route `/blog/post` and for some business decision there's a rewrite to `/generic-error`, the container API implementation will look like this:
 
   ```js
-  import Post from "../src/pages/Post.astro";
-  import GenericError from "../src/pages/GenericError.astro";
-  import { experimental_AstroContainer as AstroContainer } from "astro/container";
+  import Post from "../src/pages/Post.astro"
+  import GenericError from "../src/pages/GenericError.astro"
+  import { experimental_AstroContainer as AstroContainer } from "astro/container"
 
-  const container = await AstroContainer.create();
-  container.insertPageRoute("/generic-error", GenericError);
-  const result = await container.renderToString(Post);
-  console.log(result); // this should print the response from GenericError.astro
+  const container = await AstroContainer.create()
+  container.insertPageRoute("/generic-error", GenericError)
+  const result = await container.renderToString(Post)
+  console.log(result) // this should print the response from GenericError.astro
   ```
 
   This new method only works for page routes, which means that endpoints aren't supported.
@@ -1892,13 +1892,13 @@
   With the new `preserveScriptOrder` flag enabled, Astro will generate the styles in the order they are defined:
 
   ```js title="astro.config.mjs"
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
 
   export default defineConfig({
     experimental: {
       preserveScriptOrder: true,
     },
-  });
+  })
   ```
 
   For example, the following component has two `<style>` tags, and both define the same style for the `body` tag:
@@ -1954,13 +1954,13 @@
 
   ```js
   // astro.config.mjs
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
 
   export default defineConfig({
     experimental: {
       headingIdCompat: true,
     },
-  });
+  })
   ```
 
   This can be useful when heading IDs and anchor links need to behave consistently across your site
@@ -1970,9 +1970,9 @@
 
   ```js
   // astro.config.mjs
-  import { defineConfig } from "astro/config";
-  import { rehypeHeadingIds } from "@astrojs/markdown-remark";
-  import { otherPluginThatReliesOnHeadingIDs } from "some/plugin/source";
+  import { defineConfig } from "astro/config"
+  import { rehypeHeadingIds } from "@astrojs/markdown-remark"
+  import { otherPluginThatReliesOnHeadingIDs } from "some/plugin/source"
 
   export default defineConfig({
     markdown: {
@@ -1981,7 +1981,7 @@
         otherPluginThatReliesOnHeadingIDs,
       ],
     },
-  });
+  })
   ```
 
 - [#13311](https://github.com/withastro/astro/pull/13311) [`a3327ff`](https://github.com/withastro/astro/commit/a3327ffbe6373228339824684eaa6f340a20a32e) Thanks [@chrisirhc](https://github.com/chrisirhc)! - Adds a new configuration option for Markdown syntax highlighting `excludeLangs`
@@ -1993,7 +1993,7 @@
   The following example configuration will exclude highlighting for `mermaid` and `math` code blocks:
 
   ```js
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
 
   export default defineConfig({
     markdown: {
@@ -2002,7 +2002,7 @@
         excludeLangs: ["mermaid", "math"],
       },
     },
-  });
+  })
   ```
 
   Read more about this new option in the [Markdown syntax highlighting configuration docs](https://docs.astro.build/en/reference/configuration-reference/#markdownsyntaxhighlight).
@@ -2141,13 +2141,13 @@
 
   ```js
   // astro.config.mjs
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
 
   export default defineConfig({
     server: {
       allowedHosts: ["foo.bar.example.com", "bar.example.com"],
     },
-  });
+  })
   ```
 
   This feature is the same as [Vite's `server.allowHosts` configuration](https://vite.dev/config/server-options.html#server-allowedhosts).
@@ -2346,7 +2346,7 @@
 
   ```js
   // astro.config.mjs
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
 
   export default defineConfig({
     redirects: {
@@ -2356,7 +2356,7 @@
         destination: "https://example.com/news",
       },
     },
-  });
+  })
   ```
 
 - [#13084](https://github.com/withastro/astro/pull/13084) [`0f3be31`](https://github.com/withastro/astro/commit/0f3be3104e62d5b50dabfb15023f97954a160b8e) Thanks [@ematipico](https://github.com/ematipico)! - Adds a new experimental virtual module `astro:config` that exposes a type-safe subset of your `astro.config.mjs` configuration
@@ -2369,25 +2369,25 @@
 
   ```js
   // astro.config.mjs
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
   export default defineConfig({
     experimental: {
       serializeManifest: true,
     },
-  });
+  })
   ```
 
   Then, you can access the module in any file inside your project to import and use values from your Astro config:
 
   ```js
   // src/utils.js
-  import { trailingSlash } from "astro:config/client";
+  import { trailingSlash } from "astro:config/client"
 
   function addForwardSlash(path) {
     if (trailingSlash === "always") {
-      return path.endsWith("/") ? path : path + "/";
+      return path.endsWith("/") ? path : path + "/"
     } else {
-      return path;
+      return path
     }
   }
   ```
@@ -2852,7 +2852,7 @@
   ctx.locals = {
     one: 1,
     two: 2,
-  };
+  }
   ```
 
   This can be changed to an assignment on the existing object instead:
@@ -2861,13 +2861,13 @@
   Object.assign(ctx.locals, {
     one: 1,
     two: 2,
-  });
+  })
   ```
 
 - [#11908](https://github.com/withastro/astro/pull/11908) [`518433e`](https://github.com/withastro/astro/commit/518433e433fe69ee3bbbb1f069181cd9eb69ec9a) Thanks [@Princesseuh](https://github.com/Princesseuh)! - The `image.endpoint` config now allow customizing the route of the image endpoint in addition to the entrypoint. This can be useful in niche situations where the default route `/_image` conflicts with an existing route or your local server setup.
 
   ```js
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
 
   defineConfig({
     image: {
@@ -2876,7 +2876,7 @@
         entrypoint: "./src/image_endpoint.ts",
       },
     },
-  });
+  })
   ```
 
 - [#12008](https://github.com/withastro/astro/pull/12008) [`5608338`](https://github.com/withastro/astro/commit/560833843c6d3ce2b6c6c473ec4ae70e744bf255) Thanks [@Princesseuh](https://github.com/Princesseuh)! - Welcome to the Astro 5 beta! This release has no changes from the latest alpha of this package, but it does bring us one step closer to the final, stable release.
@@ -2892,7 +2892,7 @@
   To configure a schema, add the `env` option to your Astro config and define your client and server variables. If you were previously using this feature, please remove the experimental flag from your Astro config and move your entire `env` configuration unchanged to a top-level option.
 
   ```js
-  import { defineConfig, envField } from "astro/config";
+  import { defineConfig, envField } from "astro/config"
 
   export default defineConfig({
     env: {
@@ -2910,7 +2910,7 @@
         API_SECRET: envField.string({ context: "server", access: "secret" }),
       },
     },
-  });
+  })
   ```
 
   You can import and use your defined variables from the appropriate `/client` or `/server` module:
@@ -3108,13 +3108,13 @@
 
   ```js
   // astro.config.mjs
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
 
   export default defineConfig({
     legacy: {
       collections: true,
     },
-  });
+  })
   ```
 
   When set, no changes to your existing collections are necessary, and the restrictions on storing both new and old collections continue to exist: legacy collections (only) must continue to remain in `src/content/`, while new collections using a loader from the Content Layer API are forbidden in that folder.
@@ -3349,11 +3349,11 @@
       name: "my-integration",
       hooks: {
         "astro:routes:resolved": ({ routes }) => {
-          console.log(routes);
+          console.log(routes)
         },
       },
-    };
-  };
+    }
+  }
   ```
 
   This hook runs before `astro:config:done`, and whenever a route changes in development.
@@ -3409,8 +3409,8 @@
 
   ```ts {3,7}
   // src/content/config.ts
-  import { defineCollection, z } from "astro:content";
-  import { glob } from "astro/loaders";
+  import { defineCollection, z } from "astro:content"
+  import { glob } from "astro/loaders"
 
   const blog = defineCollection({
     // The ID is a slug generated from the path of the file relative to `base`
@@ -3420,9 +3420,9 @@
       description: z.string(),
       publishDate: z.coerce.date(),
     }),
-  });
+  })
 
-  export const collections = { blog };
+  export const collections = { blog }
   ```
 
   You can then query using the existing content collections functions, and use a simplified `render()` function to display your content:
@@ -3447,20 +3447,20 @@
   // src/content/config.ts
   const countries = defineCollection({
     loader: async () => {
-      const response = await fetch("https://restcountries.com/v3.1/all");
-      const data = await response.json();
+      const response = await fetch("https://restcountries.com/v3.1/all")
+      const data = await response.json()
       // Must return an array of entries with an id property,
       // or an object with IDs as keys and entries as values
       return data.map((country) => ({
         id: country.cca3,
         ...country,
-      }));
+      }))
     },
     // optionally add a schema to validate the data and make it type-safe for users
     // schema: z.object...
-  });
+  })
 
-  export const collections = { countries };
+  export const collections = { countries }
   ```
 
   For more advanced loading logic, you can define an object loader. This allows incremental updates and conditional loading, and gives full access to the data store. It also allows a loader to define its own schema, including generating it dynamically based on the source API. See the [the Content Layer API RFC](https://github.com/withastro/roadmap/blob/content-layer/proposals/0050-content-layer.md#loaders) for more details.
@@ -3471,16 +3471,16 @@
 
   ```ts
   // src/content/config.ts
-  import { defineCollection } from "astro:content";
-  import { feedLoader } from "@ascorbic/feed-loader";
+  import { defineCollection } from "astro:content"
+  import { feedLoader } from "@ascorbic/feed-loader"
 
   const podcasts = defineCollection({
     loader: feedLoader({
       url: "https://feeds.99percentinvisible.org/99percentinvisible",
     }),
-  });
+  })
 
-  export const collections = { podcasts };
+  export const collections = { podcasts }
   ```
 
   To learn more, see [the Content Layer RFC](https://github.com/withastro/roadmap/blob/content-layer/proposals/0050-content-layer.md).
@@ -3507,9 +3507,9 @@
   // src/middleware.js
 
   export const onRequest = (ctx, next) => {
-    console.log(ctx.isPrerendered); // it will log true
-    return next();
-  };
+    console.log(ctx.isPrerendered) // it will log true
+    return next()
+  }
   ```
 
 - [#12047](https://github.com/withastro/astro/pull/12047) [`21b5e80`](https://github.com/withastro/astro/commit/21b5e806c5df37c6b01da63487568a6ed351ba7d) Thanks [@rgodha24](https://github.com/rgodha24)! - Adds a new optional `parser` property to the built-in `file()` loader for content collections to support additional file types such as `toml` and `csv`.
@@ -3561,12 +3561,12 @@
     loader: file("src/data/pets.json", {
       parser: (text) => JSON.parse(text).dogs,
     }),
-  });
+  })
   const cats = defineCollection({
     loader: file("src/data/pets.json", {
       parser: (text) => JSON.parse(text).cats,
     }),
-  });
+  })
   ```
 
   And it continues to work with maps of `id` to `data`
@@ -3584,7 +3584,7 @@
   const fish = defineCollection({
     loader: file("src/data/fish.yaml"),
     schema: z.object({ breed: z.string(), age: z.number() }),
-  });
+  })
   ```
 
 - [#11698](https://github.com/withastro/astro/pull/11698) [`05139ef`](https://github.com/withastro/astro/commit/05139ef8b46de96539cc1d08148489eaf3cfd837) Thanks [@ematipico](https://github.com/ematipico)! - Adds a new property to the globals `Astro` and `APIContext` called `routePattern`. The `routePattern` represents the current route (component)
@@ -3602,9 +3602,9 @@
   // src/pages/index.js
 
   export const GET = (ctx) => {
-    console.log(ctx.routePattern); // it will log src/pages/index.js
-    return new Response.json({ loreum: "ipsum" });
-  };
+    console.log(ctx.routePattern) // it will log src/pages/index.js
+    return new Response.json({ loreum: "ipsum" })
+  }
   ```
 
 - [#11941](https://github.com/withastro/astro/pull/11941) [`b6a5f39`](https://github.com/withastro/astro/commit/b6a5f39846581d0e9cfd7ae6f056c8d1209f71bd) Thanks [@Princesseuh](https://github.com/Princesseuh)! - Adds a new `buildOutput` property to the `astro:config:done` hook returning the build output type.
@@ -3800,52 +3800,52 @@
 
   ```ts
   // src/middleware.ts
-  import { defineMiddleware } from "astro:middleware";
-  import { getActionContext } from "astro:actions";
+  import { defineMiddleware } from "astro:middleware"
+  import { getActionContext } from "astro:actions"
 
   export const onRequest = defineMiddleware(async (context, next) => {
     // Skip requests for prerendered pages
-    if (context.isPrerendered) return next();
+    if (context.isPrerendered) return next()
 
     const { action, setActionResult, serializeActionResult } =
-      getActionContext(context);
+      getActionContext(context)
 
     // If an action result was forwarded as a cookie, set the result
     // to be accessible from `Astro.getActionResult()`
-    const payload = context.cookies.get("ACTION_PAYLOAD");
+    const payload = context.cookies.get("ACTION_PAYLOAD")
     if (payload) {
-      const { actionName, actionResult } = payload.json();
-      setActionResult(actionName, actionResult);
-      context.cookies.delete("ACTION_PAYLOAD");
-      return next();
+      const { actionName, actionResult } = payload.json()
+      setActionResult(actionName, actionResult)
+      context.cookies.delete("ACTION_PAYLOAD")
+      return next()
     }
 
     // If an action was called from an HTML form action,
     // call the action handler and redirect with the result as a cookie.
     if (action?.calledFrom === "form") {
-      const actionResult = await action.handler();
+      const actionResult = await action.handler()
 
       context.cookies.set("ACTION_PAYLOAD", {
         actionName: action.name,
         actionResult: serializeActionResult(actionResult),
-      });
+      })
 
       if (actionResult.error) {
         // Redirect back to the previous page on error
-        const referer = context.request.headers.get("Referer");
+        const referer = context.request.headers.get("Referer")
         if (!referer) {
           throw new Error(
             "Internal: Referer unexpectedly missing from Action POST request.",
-          );
+          )
         }
-        return context.redirect(referer);
+        return context.redirect(referer)
       }
       // Redirect to the destination page on success
-      return context.redirect(context.originPathname);
+      return context.redirect(context.originPathname)
     }
 
-    return next();
-  });
+    return next()
+  })
   ```
 
 - [#12475](https://github.com/withastro/astro/pull/12475) [`3f02d5f`](https://github.com/withastro/astro/commit/3f02d5f12b167514fff6eb9693b4e25c668e7a31) Thanks [@ascorbic](https://github.com/ascorbic)! - Changes the default content config location from `src/content/config.*` to `src/content.config.*`.
@@ -3861,17 +3861,17 @@
   In this release, `<root>/.astro/integrations/<normalized_integration_name>` can now be retrieved in the `astro:config:setup` hook by calling `createCodegenDir()`. It allows you to have a dedicated folder, avoiding conflicts with another integration or Astro itself. This directory is created by calling this function so it's safe to write files to it directly:
 
   ```js
-  import { writeFileSync } from "node:fs";
+  import { writeFileSync } from "node:fs"
 
   const integration = {
     name: "my-integration",
     hooks: {
       "astro:config:setup": ({ createCodegenDir }) => {
-        const codegenDir = createCodegenDir();
-        writeFileSync(new URL("cache.json", codegenDir), "{}", "utf-8");
+        const codegenDir = createCodegenDir()
+        writeFileSync(new URL("cache.json", codegenDir), "{}", "utf-8")
       },
     },
-  };
+  }
   ```
 
 - [#12379](https://github.com/withastro/astro/pull/12379) [`94f4fe8`](https://github.com/withastro/astro/commit/94f4fe8180f02cf19fb617dde7d67d4f7bee8dac) Thanks [@Princesseuh](https://github.com/Princesseuh)! - Adds a new components exported from `astro/components`: Welcome, to be used by the new Basics template
@@ -4029,7 +4029,7 @@
       operator: z.string(),
       notable_discoveries: z.array(z.string()),
     }),
-  });
+  })
   ```
 
 - [#12022](https://github.com/withastro/astro/pull/12022) [`ddc3a08`](https://github.com/withastro/astro/commit/ddc3a08e8facdaf0b0298ee5a7adb73a53e1575e) Thanks [@Princesseuh](https://github.com/Princesseuh)! - Properly handle including trailing slash on the image endpoint route based on the trailingSlash config
@@ -4160,11 +4160,11 @@
       name: "my-integration",
       hooks: {
         "astro:routes:resolved": ({ routes }) => {
-          console.log(routes);
+          console.log(routes)
         },
       },
-    };
-  };
+    }
+  }
   ```
 
   This hook runs before `astro:config:done`, and whenever a route changes in development.
@@ -4327,52 +4327,52 @@
 
   ```ts
   // src/middleware.ts
-  import { defineMiddleware } from "astro:middleware";
-  import { getActionContext } from "astro:actions";
+  import { defineMiddleware } from "astro:middleware"
+  import { getActionContext } from "astro:actions"
 
   export const onRequest = defineMiddleware(async (context, next) => {
     // Skip requests for prerendered pages
-    if (context.isPrerendered) return next();
+    if (context.isPrerendered) return next()
 
     const { action, setActionResult, serializeActionResult } =
-      getActionContext(context);
+      getActionContext(context)
 
     // If an action result was forwarded as a cookie, set the result
     // to be accessible from `Astro.getActionResult()`
-    const payload = context.cookies.get("ACTION_PAYLOAD");
+    const payload = context.cookies.get("ACTION_PAYLOAD")
     if (payload) {
-      const { actionName, actionResult } = payload.json();
-      setActionResult(actionName, actionResult);
-      context.cookies.delete("ACTION_PAYLOAD");
-      return next();
+      const { actionName, actionResult } = payload.json()
+      setActionResult(actionName, actionResult)
+      context.cookies.delete("ACTION_PAYLOAD")
+      return next()
     }
 
     // If an action was called from an HTML form action,
     // call the action handler and redirect with the result as a cookie.
     if (action?.calledFrom === "form") {
-      const actionResult = await action.handler();
+      const actionResult = await action.handler()
 
       context.cookies.set("ACTION_PAYLOAD", {
         actionName: action.name,
         actionResult: serializeActionResult(actionResult),
-      });
+      })
 
       if (actionResult.error) {
         // Redirect back to the previous page on error
-        const referer = context.request.headers.get("Referer");
+        const referer = context.request.headers.get("Referer")
         if (!referer) {
           throw new Error(
             "Internal: Referer unexpectedly missing from Action POST request.",
-          );
+          )
         }
-        return context.redirect(referer);
+        return context.redirect(referer)
       }
       // Redirect to the destination page on success
-      return context.redirect(context.originPathname);
+      return context.redirect(context.originPathname)
     }
 
-    return next();
-  });
+    return next()
+  })
   ```
 
 ### Patch Changes
@@ -4506,13 +4506,13 @@
 
   ```js
   // astro.config.mjs
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
 
   export default defineConfig({
     legacy: {
       collections: true,
     },
-  });
+  })
   ```
 
   When set, no changes to your existing collections are necessary, and the restrictions on storing both new and old collections continue to exist: legacy collections (only) must continue to remain in `src/content/`, while new collections using a loader from the Content Layer API are forbidden in that folder.
@@ -4601,12 +4601,12 @@
     loader: file("src/data/pets.json", {
       parser: (text) => JSON.parse(text).dogs,
     }),
-  });
+  })
   const cats = defineCollection({
     loader: file("src/data/pets.json", {
       parser: (text) => JSON.parse(text).cats,
     }),
-  });
+  })
   ```
 
   And it continues to work with maps of `id` to `data`
@@ -4624,7 +4624,7 @@
   const fish = defineCollection({
     loader: file("src/data/fish.yaml"),
     schema: z.object({ breed: z.string(), age: z.number() }),
-  });
+  })
   ```
 
 - [#12071](https://github.com/withastro/astro/pull/12071) [`61d248e`](https://github.com/withastro/astro/commit/61d248e581a3bebf0ec67169813fc8ae4a2182df) Thanks [@Princesseuh](https://github.com/Princesseuh)! - `astro add` no longer automatically sets `output: 'server'`. Since the default value of output now allows for server-rendered pages, it no longer makes sense to default to full server builds when you add an adapter
@@ -4638,17 +4638,17 @@
   In this release, `<root>/.astro/integrations/<normalized_integration_name>` can now be retrieved in the `astro:config:setup` hook by calling `createCodegenDir()`. It allows you to have a dedicated folder, avoiding conflicts with another integration or Astro itself. This directory is created by calling this function so it's safe to write files to it directly:
 
   ```js
-  import { writeFileSync } from "node:fs";
+  import { writeFileSync } from "node:fs"
 
   const integration = {
     name: "my-integration",
     hooks: {
       "astro:config:setup": ({ createCodegenDir }) => {
-        const codegenDir = createCodegenDir();
-        writeFileSync(new URL("cache.json", codegenDir), "{}", "utf-8");
+        const codegenDir = createCodegenDir()
+        writeFileSync(new URL("cache.json", codegenDir), "{}", "utf-8")
       },
     },
-  };
+  }
   ```
 
 - [#12081](https://github.com/withastro/astro/pull/12081) [`8679954`](https://github.com/withastro/astro/commit/8679954bf647529e0f2134053866fc507e64c5e3) Thanks [@florian-lefebvre](https://github.com/florian-lefebvre)! - Removes the experimental `contentCollectionsCache` introduced in `3.5.0`.
@@ -4743,7 +4743,7 @@
   ctx.locals = {
     one: 1,
     two: 2,
-  };
+  }
   ```
 
   This can be changed to an assignment on the existing object instead:
@@ -4752,7 +4752,7 @@
   Object.assign(ctx.locals, {
     one: 1,
     two: 2,
-  });
+  })
   ```
 
 ### Minor Changes
@@ -4805,7 +4805,7 @@
 - [#11908](https://github.com/withastro/astro/pull/11908) [`518433e`](https://github.com/withastro/astro/commit/518433e433fe69ee3bbbb1f069181cd9eb69ec9a) Thanks [@Princesseuh](https://github.com/Princesseuh)! - The `image.endpoint` config now allow customizing the route of the image endpoint in addition to the entrypoint. This can be useful in niche situations where the default route `/_image` conflicts with an existing route or your local server setup.
 
   ```js
-  import { defineConfig } from "astro/config";
+  import { defineConfig } from "astro/config"
 
   defineConfig({
     image: {
@@ -4814,7 +4814,7 @@
         entrypoint: "./src/image_endpoint.ts",
       },
     },
-  });
+  })
   ```
 
 - [#11806](https://github.com/withastro/astro/pull/11806) [`f7f2338`](https://github.com/withastro/astro/commit/f7f2338c2b96975001b5c782f458710e9cc46d74) Thanks [@Princesseuh](https://github.com/Princesseuh)! - Removes the `assets` property on `supportedAstroFeatures` for adapters, as it did not reflect reality properly in many cases.
@@ -4985,7 +4985,7 @@
       operator: z.string(),
       notable_discoveries: z.array(z.string()),
     }),
-  });
+  })
   ```
 
 - [#11968](https://github.com/withastro/astro/pull/11968) [`86ad1fd`](https://github.com/withastro/astro/commit/86ad1fd223e2d2c448372caa159090efbee69237) Thanks [@NikolaRHristov](https://github.com/NikolaRHristov)! - Fixes a typo in the server island JSDoc
@@ -5022,9 +5022,9 @@
   // src/middleware.js
 
   export const onRequest = (ctx, next) => {
-    console.log(ctx.isPrerendered); // it will log true
-    return next();
-  };
+    console.log(ctx.isPrerendered) // it will log true
+    return next()
+  }
   ```
 
 ### Patch Changes
@@ -5078,8 +5078,8 @@
 
   ```ts {3,7}
   // src/content/config.ts
-  import { defineCollection, z } from "astro:content";
-  import { glob } from "astro/loaders";
+  import { defineCollection, z } from "astro:content"
+  import { glob } from "astro/loaders"
 
   const blog = defineCollection({
     // The ID is a slug generated from the path of the file relative to `base`
@@ -5089,9 +5089,9 @@
       description: z.string(),
       publishDate: z.coerce.date(),
     }),
-  });
+  })
 
-  export const collections = { blog };
+  export const collections = { blog }
   ```
 
   You can then query using the existing content collections functions, and use a simplified `render()` function to display your content:
@@ -5116,20 +5116,20 @@
   // src/content/config.ts
   const countries = defineCollection({
     loader: async () => {
-      const response = await fetch("https://restcountries.com/v3.1/all");
-      const data = await response.json();
+      const response = await fetch("https://restcountries.com/v3.1/all")
+      const data = await response.json()
       // Must return an array of entries with an id property,
       // or an object with IDs as keys and entries as values
       return data.map((country) => ({
         id: country.cca3,
         ...country,
-      }));
+      }))
     },
     // optionally add a schema to validate the data and make it type-safe for users
     // schema: z.object...
-  });
+  })
 
-  export const collections = { countries };
+  export const collections = { countries }
   ```
 
   For more advanced loading logic, you can define an object loader. This allows incremental updates and conditional loading, and gives full access to the data store. It also allows a loader to define its own schema, including generating it dynamically based on the source API. See the [the Content Layer API RFC](https://github.com/withastro/roadmap/blob/content-layer/proposals/0050-content-layer.md#loaders) for more details.
@@ -5140,16 +5140,16 @@
 
   ```ts
   // src/content/config.ts
-  import { defineCollection } from "astro:content";
-  import { feedLoader } from "@ascorbic/feed-loader";
+  import { defineCollection } from "astro:content"
+  import { feedLoader } from "@ascorbic/feed-loader"
 
   const podcasts = defineCollection({
     loader: feedLoader({
       url: "https://feeds.99percentinvisible.org/99percentinvisible",
     }),
-  });
+  })
 
-  export const collections = { podcasts };
+  export const collections = { podcasts }
   ```
 
   To learn more, see [the Content Layer RFC](https://github.com/withastro/roadmap/blob/content-layer/proposals/0050-content-layer.md).
@@ -5305,9 +5305,9 @@
   // src/pages/index.js
 
   export const GET = (ctx) => {
-    console.log(ctx.routePattern); // it will log src/pages/index.js
-    return new Response.json({ loreum: "ipsum" });
-  };
+    console.log(ctx.routePattern) // it will log src/pages/index.js
+    return new Response.json({ loreum: "ipsum" })
+  }
   ```
 
 ### Patch Changes
@@ -5337,7 +5337,7 @@
   To configure a schema, add the `env` option to your Astro config and define your client and server variables. If you were previously using this feature, please remove the experimental flag from your Astro config and move your entire `env` configuration unchanged to a top-level option.
 
   ```js
-  import { defineConfig, envField } from "astro/config";
+  import { defineConfig, envField } from "astro/config"
 
   export default defineConfig({
     env: {
@@ -5355,7 +5355,7 @@
         API_SECRET: envField.string({ context: "server", access: "secret" }),
       },
     },
-  });
+  })
   ```
 
   You can import and use your defined variables from the appropriate `/client` or `/server` module:

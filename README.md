@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/changelog-analyzer)](https://www.npmjs.com/package/changelog-analyzer)
 [![cdn version](https://data.jsdelivr.com/v1/package/npm/changelog-analyzer/badge)](https://www.jsdelivr.com/package/npm/changelog-analyzer)
 [![codecov](https://codecov.io/gh/ajiho/changelog-analyzer/graph/badge.svg?token=G2P1AI238H)](https://codecov.io/gh/ajiho/changelog-analyzer)
-[![Test](https://img.shields.io/github/actions/workflow/status/ajiho/changelog-analyzer/test.yml?label=Unit%20Test&branch=main)](https://github.com/ajiho/changelog-analyzer/actions/workflows/test.yml)
+[![Test](https://img.shields.io/github/actions/workflow/status/ajiho/changelog-analyzer/test.yml?label=Test&logo=codecov&style=flat-square&branch=main)](https://github.com/ajiho/changelog-analyzer/actions/workflows/test.yml)
 [![Conventional Changelog](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-conventional--changelog-e10079.svg?style=flat)](https://github.com/conventional-changelog/conventional-changelog)
 [![Node](https://img.shields.io/node/v/@lerna-lite/cli.svg)](https://nodejs.org/en/about/previous-releases)
 [![Vitest](https://img.shields.io/badge/tested%20with-vitest-fcc72b.svg?logo=vitest)](https://vitest.dev/)

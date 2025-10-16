@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import yargs from "yargs";
-import { hideBin } from "yargs/helpers";
-import { main } from "./index.js";
+import yargs from "yargs"
+import { hideBin } from "yargs/helpers"
+import { main } from "./index.js"
 
 await yargs(hideBin(process.argv))
   .scriptName("changelog-parser")
@@ -38,18 +38,18 @@ await yargs(hideBin(process.argv))
         describe: "要解析的 changelog 文件路径",
         type: "string",
         default: "CHANGELOG.md",
-      });
+      })
     },
     async (argv) => {
       try {
-        const ouput = await main(argv);
+        const ouput = await main(argv)
 
-        console.log(ouput);
+        console.log(ouput)
       } catch (err) {
-        console.error(err);
-        process.exit(1);
+        console.error(err)
+        process.exit(1)
       }
     },
   )
   .help()
-  .parse();
+  .parse()

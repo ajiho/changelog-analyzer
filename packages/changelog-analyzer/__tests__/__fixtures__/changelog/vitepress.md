@@ -2367,14 +2367,14 @@ This version uses Vue 3.2.0.
 
   ```js
   // before
-  import { useSiteDataByRoute, usePageData } from "vitepress";
-  const site = useSiteDataByRoute();
-  const page = usePageData();
-  const theme = computed(() => site.value.themeConfig);
+  import { useSiteDataByRoute, usePageData } from "vitepress"
+  const site = useSiteDataByRoute()
+  const page = usePageData()
+  const theme = computed(() => site.value.themeConfig)
 
   // after
-  import { useData } from "vitepress";
-  const { site, page, theme } = useData();
+  import { useData } from "vitepress"
+  const { site, page, theme } = useData()
   ```
 
   All destructured values are computed refs injected from app root

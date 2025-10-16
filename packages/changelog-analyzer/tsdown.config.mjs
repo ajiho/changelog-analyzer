@@ -1,4 +1,4 @@
-import { defineConfig } from "tsdown";
+import { defineConfig } from "tsdown"
 
 export default defineConfig({
   entry: ["src/index.ts"], // 入口文件
@@ -6,4 +6,4 @@ export default defineConfig({
   format: ["esm", "cjs"], // 输出格式
   sourcemap: true, // 生成sourcemap
   minify: false, // 是否压缩
-});
+})
