@@ -7,12 +7,12 @@ const filename = path.resolve(fixtures, "keepachangelog.md")
 
 describe("CLI", () => {
   it("只传递filename时打印分析结果", async () => {
-    const { stdout } = await execa(CLI_PATH, [filename])
+    const { stdout } = await execa("node", [CLI_PATH, filename])
     const output = JSON.parse(stdout)
     expect(output).toMatchSnapshot()
   })
   it("不传任何参数时使用默认 CHANGELOG.md", async () => {
-    const { stdout } = await execa(CLI_PATH, [], {
+    const { stdout } = await execa("node", [CLI_PATH], {
       cwd: fixtures, // 指定工作目录
     })
     const output = JSON.parse(stdout)
@@ -25,24 +25,30 @@ describe("CLI", () => {
   })
 
   it("使用 --version 参数指定版本", async () => {
-    const { stdout } = await execa(CLI_PATH, [filename, "--version", "1.0.0"])
+    const { stdout } = await execa("node", [
+      CLI_PATH,
+      filename,
+      "--version",
+      "1.0.0",
+    ])
 
     expect(stdout).toMatchSnapshot()
   })
 
   it("使用 --latest 参数只获取最新版本", async () => {
-    const { stdout } = await execa(CLI_PATH, [filename, "--latest"])
+    const { stdout } = await execa("node", [CLI_PATH, filename, "--latest"])
 
     expect(stdout).toMatchSnapshot()
   })
 
   it("--with-title单独使用无效,依然返回所有的结果", async () => {
-    const { stdout } = await execa(CLI_PATH, [filename, "--with-title"])
+    const { stdout } = await execa("node", [CLI_PATH, filename, "--with-title"])
     expect(stdout).toMatchSnapshot()
   })
 
   it("组合参数 --latest --with-title", async () => {
-    const { stdout } = await execa(CLI_PATH, [
+    const { stdout } = await execa("node", [
+      CLI_PATH,
       filename,
       "--latest",
       "--with-title",
@@ -51,7 +57,8 @@ describe("CLI", () => {
   })
 
   it("指定无效版本应报错并退出码为 1", async () => {
-    const { stderr, exitCode } = await execa(CLI_PATH, [
+    const { stderr, exitCode } = await execa("node", [
+      CLI_PATH,
       filename,
       "--version",
       "999.0.0",
@@ -61,9 +68,7 @@ describe("CLI", () => {
   })
 
   it("输出帮助信息 (--help)", async () => {
-    const { stdout } = await execa(CLI_PATH, ["--help"])
-
-    console.log(stdout)
+    const { stdout } = await execa("node", [CLI_PATH, "--help"])
 
     expect(stdout).toMatch(/Usage:/)
     expect(stdout).toMatch(/--version/)
