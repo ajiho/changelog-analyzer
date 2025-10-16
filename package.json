@@ -1,7 +1,6 @@
 {
   "private": true,
   "name": "@changelog-analyzer/monorepo",
-  "version": "0.0.0",
   "author": "ajiho",
   "funding": "https://www.lujiahao.com/sponsor",
   "license": "MIT",
@@ -17,7 +16,7 @@
     "commit": "git-cz",
     "commitlint": "commitlint --config configs/commitlint.config.mjs -e -V",
     "prepare": "husky",
-    "build:core": "pnpm --filter changelog-analyzer build",
+    "build:core": "pnpm --filter @t-changelog-analyzer/core build",
     "build:cli": "tsc -p packages/cli/tsconfig.json",
     "build": "run-s clean build:*",
     "test": "vitest --config configs/vitest.config.mjs --coverage --ui",
@@ -31,11 +30,12 @@
   },
   "packageManager": "pnpm@10.17.1",
   "engines": {
-    "node": ">=22.14.0",
+    "node": ">=18.0.0",
     "npm": ">=10.9.2",
     "pnpm": ">=10.15.1"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",

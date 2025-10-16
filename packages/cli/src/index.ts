@@ -1,4 +1,4 @@
-import parseChangelog from "changelog-analyzer"
+import parseChangelog from "@t-changelog-analyzer/core"
 import type { CliParserOptions } from "./interfaces.js"
 
 const DEFAULT = {

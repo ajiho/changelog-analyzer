@@ -1,6 +1,6 @@
 {
-  "name": "changelog-analyzer",
-  "version": "1.0.0",
+  "name": "@t-changelog-analyzer/core",
+  "version": "1.0.1",
   "description": "",
   "author": "ajiho",
   "funding": "https://www.lujiahao.com/sponsor",

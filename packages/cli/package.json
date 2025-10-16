@@ -1,6 +1,6 @@
 {
-  "name": "@changelog-analyzer/cli",
-  "version": "1.0.0",
+  "name": "@t-changelog-analyzer/cli",
+  "version": "1.0.1",
   "description": "",
   "author": "ajiho",
   "funding": "https://www.lujiahao.com/sponsor",
@@ -14,7 +14,7 @@
   ],
   "packageManager": "pnpm@10.17.1",
   "dependencies": {
-    "changelog-analyzer": "workspace:*",
+    "@t-changelog-analyzer/core": "workspace:*",
     "yargs": "^18.0.0"
   },
   "devDependencies": {
