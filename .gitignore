@@ -1,0 +1,11 @@
+node_modules/
+dist/
+
+
+# 覆盖率
+coverage
+
+
+# vitepress
+docs/.vitepress/dist
+docs/.vitepress/cache

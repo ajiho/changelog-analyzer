@@ -1,0 +1,64 @@
+{
+  "name": "changelog-analyzer",
+  "version": "0.0.0",
+  "description": "Change log analyzer for node.",
+  "repository": {
+    "directory": "packages/changelog-analyzer",
+    "type": "git",
+    "url": "https://github.com/ajiho/changelog-analyzer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ajiho/changelog-analyzer/issues"
+  },
+  "homepage": "https://github.com/ajiho/changelog-analyzer",
+  "author": "ajiho",
+  "funding": "https://www.lujiahao.com/sponsor",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsdown"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/index.cjs",
+        "types": "./dist/index.d.cts"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "packageManager": "pnpm@10.17.1",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "changelog",
+    "CHANGELOG.md",
+    "parser",
+    "semantic",
+    "semver",
+    "versioning"
+  ],
+  "dependencies": {
+    "markdown-it": "^14.1.0",
+    "universalify": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/universalify": "^1.0.3",
+    "is-what": "^5.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
