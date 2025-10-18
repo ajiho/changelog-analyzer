@@ -1,0 +1,29 @@
+{
+  "name": "@changelog-analyzer/cli",
+  "version": "0.0.0",
+  "description": "The command-line tool of the changelog-analyzer package",
+  "author": "ajiho",
+  "funding": "https://www.lujiahao.com/sponsor",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "changelog-analyzer": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "packageManager": "pnpm@10.17.1",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "changelog-analyzer": "workspace:*",
+    "yargs": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/yargs": "^17.0.33"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
