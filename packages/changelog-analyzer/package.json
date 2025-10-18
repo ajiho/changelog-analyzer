@@ -2,6 +2,14 @@
   "name": "changelog-analyzer",
   "version": "1.0.0",
   "description": "Change log analyzer for node.",
+  "repository": {
+    "directory": "packages/themes",
+    "type": "git",
+    "url": "https://github.com/ajiho/changelog-analyzer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ajiho/changelog-analyzer/issues"
+  },
   "author": "ajiho",
   "funding": "https://www.lujiahao.com/sponsor",
   "license": "MIT",
@@ -25,7 +33,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "packageManager": "pnpm@10.17.1",
   "engines": {

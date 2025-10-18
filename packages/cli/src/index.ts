@@ -30,7 +30,7 @@ export async function main(options: CliParserOptions) {
     const last = result.versions[0]
     ret = withTitle ? `${last.title}\r\n\r\n${last.body}` : last.body
   } else {
-    ret = result
+    ret = JSON.stringify(result)
   }
-  return JSON.stringify(ret)
+  return ret
 }
