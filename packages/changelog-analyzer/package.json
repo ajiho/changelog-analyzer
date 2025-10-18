@@ -1,6 +1,6 @@
 {
   "name": "changelog-analyzer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Change log analyzer for node.",
   "repository": {
     "directory": "packages/themes",
